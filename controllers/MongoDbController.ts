@@ -1,3 +1,4 @@
+import { logger } from "../config/logger";
 import { Request, Response } from "express";
 import * as faker from "faker";
 import { Terms } from "../orm/entities/mongodb/Terms";
@@ -53,18 +54,27 @@ export const getFifthQuery = async (req: Request, res: Response) => {
   }
 };
 
-export const createTerms = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response) => {
   try {
-    const body: Omit<Terms, "_id" | "id"> = {
-      start_date: new Date(),
-      end_date: new Date(),
-      free_slots: 0,
-      price: 0,
-    };
-    const terms = await termsRepository.create(body);
-    const newTerms = await termsRepository.save(terms);
-    return res.status(200).json(newTerms);
+    const iterator = 10;
+    for (let i = 0; i < iterator; i++) {
+      logger.debug(`iter = ${iterator}`);
+      await createTerms();
+    }
+    return res.status(200).json({ succes: true });
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }
+};
+
+export const createTerms = async (): Promise<Terms> => {
+  const body: Omit<Terms, "_id" | "id"> = {
+    start_date: new Date(),
+    end_date: new Date(),
+    free_slots: 0,
+    price: 0,
+  };
+  const terms = await termsRepository.create(body);
+  await termsRepository.save(terms);
+  return terms;
 };

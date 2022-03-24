@@ -5,6 +5,7 @@ import helmet from "helmet";
 import { router } from "./routes";
 import { appConfig } from "./config/Config";
 import {
+  MariaDbDatabase,
   MongoDbDatabase,
   MySqlDatabase,
 } from "./orm/connection/TypeOrmConnectionFactory";
@@ -31,6 +32,13 @@ MongoDbDatabase.initialize()
     console.error("Error during MongoDB initialization", err);
   });
 
+MariaDbDatabase.initialize()
+  .then(async () => {
+    console.log("MariaDB has been initialized!");
+  })
+  .catch((err) => {
+    console.error("Error during MariaDB initialization", err);
+  });
 app.use("/api", router);
 
 app.use("/health-check", async (req, res) => {
