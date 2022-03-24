@@ -6,7 +6,7 @@ import { logger } from "../../config/logger";
 import { MongoDbDatabase } from "../connection/TypeOrmConnectionFactory";
 
 async function init() {
-  MongoDbDatabase.initialize()
+  await MongoDbDatabase.initialize()
     .then(async () => {
       console.log("MongoDB has been initialized!");
     })

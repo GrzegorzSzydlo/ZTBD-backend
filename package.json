@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "nodemon server.ts",
-    "command:mongodb-generator": "node dist/commands/mongodb-generator.js"
+    "command:mongodb-generator": "node dist/orm/commands/mongodb-generator.js"
   },
   "author": "",
   "license": "ISC",
