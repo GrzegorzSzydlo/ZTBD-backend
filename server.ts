@@ -2,13 +2,13 @@ import "reflect-metadata";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { router } from "./routes";
-import { appConfig } from "./config/Config";
+import { router } from "./src/routes";
+import { appConfig } from "./src/config/Config";
 import {
   MariaDbDatabase,
   MongoDbDatabase,
   MySqlDatabase,
-} from "./orm/connection/TypeOrmConnectionFactory";
+} from "./src/orm/connection/TypeOrmConnectionFactory";
 
 const app = express();
 

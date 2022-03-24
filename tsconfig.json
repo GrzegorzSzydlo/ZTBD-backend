@@ -3,11 +3,11 @@
     "module": "commonjs",
     "lib": ["esnext"],
     "target": "es2020",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*", "types/*"]
-    },
+    // "moduleResolution": "node",
+    // "baseUrl": ".",
+    // "paths": {
+    //   "*": ["node_modules/*", "types/*"]
+    // },
     "sourceMap": true,
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
@@ -16,7 +16,11 @@
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
-  }
+    "experimentalDecorators": true,
+    "rootDir": "src"
+  },
+  "include": ["./src"]
 }
