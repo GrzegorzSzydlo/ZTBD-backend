@@ -9,7 +9,7 @@
       "*": ["node_modules/*", "types/*"]
     },
     "sourceMap": true,
-    "outDir": "build",
+    "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

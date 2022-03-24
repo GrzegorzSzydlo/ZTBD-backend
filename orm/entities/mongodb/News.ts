@@ -1,9 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { User } from "./User";
+import { Entity, Column, ObjectIdColumn } from "typeorm";
 
 @Entity()
 export class News {
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id!: number;
   @Column()
   description!: string;
@@ -20,6 +19,6 @@ export class News {
   @Column()
   camp_filename!: string;
 
-  @ManyToOne(() => User, (user) => user.id)
-  user?: User;
+  @Column()
+  userid!: string;
 }

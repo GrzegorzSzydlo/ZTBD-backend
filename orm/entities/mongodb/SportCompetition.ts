@@ -1,9 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { User } from "./User";
+import { Entity, Column, ObjectIdColumn } from "typeorm";
 
 @Entity()
 export class SportCompetition {
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id!: number;
 
   @Column()
@@ -21,6 +20,6 @@ export class SportCompetition {
   @Column()
   duration!: number;
 
-  @ManyToOne(() => User, (user) => user.id)
-  user?: User;
+  @Column()
+  userId!: string;
 }

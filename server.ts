@@ -4,7 +4,10 @@ import cors from "cors";
 import helmet from "helmet";
 import { router } from "./routes";
 import { appConfig } from "./config/Config";
-import { MySqlDatabase } from "./orm/connection/TypeOrmConnectionFactory";
+import {
+  MongoDbDatabase,
+  MySqlDatabase,
+} from "./orm/connection/TypeOrmConnectionFactory";
 
 const app = express();
 
@@ -14,10 +17,18 @@ app.use(express.json());
 
 MySqlDatabase.initialize()
   .then(() => {
-    console.log("Data Source has been initialized!");
+    console.log("MySql database has been initialized!");
   })
   .catch((err) => {
-    console.error("Error during Data Source initialization", err);
+    console.error("Error during MySql database initialization", err);
+  });
+
+MongoDbDatabase.initialize()
+  .then(async () => {
+    console.log("MongoDB has been initialized!");
+  })
+  .catch((err) => {
+    console.error("Error during MongoDB initialization", err);
   });
 
 app.use("/api", router);

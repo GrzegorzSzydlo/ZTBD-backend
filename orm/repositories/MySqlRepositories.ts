@@ -1,4 +1,4 @@
-import { Photo } from "../entities/mysql/Photo";
+import { Terms } from "../entities/mysql/Terms";
 import { MySqlDatabase } from "../connection/TypeOrmConnectionFactory";
 
-const PhotoRepository = MySqlDatabase.getRepository(Photo);
+export const termsRepository = MySqlDatabase.getRepository(Terms);
