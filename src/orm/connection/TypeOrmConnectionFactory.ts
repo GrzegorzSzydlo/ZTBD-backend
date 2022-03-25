@@ -27,6 +27,6 @@ export const MariaDbDatabase = new DataSource({
   username: "tYnlNplnIj",
   password: "gfWAyq4Jrv",
   database: "tYnlNplnIj",
-  entities: [path.join(__dirname, "../entities/mysql/*.{js,ts}")],
+  entities: [path.join(__dirname, "../entities/mariadb/*.{js,ts}")],
   synchronize: false,
 });

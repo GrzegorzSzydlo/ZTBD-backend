@@ -39,6 +39,7 @@ MariaDbDatabase.initialize()
   .catch((err) => {
     console.error("Error during MariaDB initialization", err);
   });
+
 app.use("/api", router);
 
 app.use("/health-check", async (req, res) => {

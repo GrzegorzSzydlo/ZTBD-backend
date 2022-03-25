@@ -15,10 +15,10 @@ export class Credential {
   password!: string;
 
   @Column()
-  facebook_id?: string;
+  facebook_id!: string;
 
   @Column()
-  google_id?: string;
+  google_id!: string;
 
   @Column()
   active!: string;
@@ -27,5 +27,5 @@ export class Credential {
   admin!: string;
 
   @Column()
-  userid!: string;
+  userId!: string;
 }

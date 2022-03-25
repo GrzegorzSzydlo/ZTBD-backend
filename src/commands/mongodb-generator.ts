@@ -1,9 +1,9 @@
 import "source-map-support/register";
 import "reflect-metadata";
 
-import * as MongoDbController from "../../controllers/MongoDbController";
-import { logger } from "../../config/logger";
-import { MongoDbDatabase } from "../connection/TypeOrmConnectionFactory";
+import * as MongoDbController from "../controllers/MongoDbController";
+import { logger } from "../config/logger";
+import { MongoDbDatabase } from "../orm/connection/TypeOrmConnectionFactory";
 
 async function init() {
   await MongoDbDatabase.initialize()
@@ -13,10 +13,12 @@ async function init() {
     .catch((err) => {
       console.error("Error during MongoDB initialization", err);
     });
+  console.time("mongo");
   logger.info("command started");
-  await MongoDbController.createTerms();
+  await MongoDbController.create();
 
   logger.info("command ended");
+  console.timeEnd("mongo");
 }
 
 init()

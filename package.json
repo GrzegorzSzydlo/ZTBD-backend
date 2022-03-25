@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "nodemon server.ts",
-    "command:mongodb-generator": "node dist/orm/commands/mongodb-generator.js"
+    "command:mongodb-generator": "node dist/commands/mongodb-generator.js",
+    "command:mariadb-generator": "node dist/commands/mariadb-generator.js",
+    "command:mysql-generator": "node dist/commands/mysql-generator.js"
   },
   "author": "",
   "license": "ISC",
@@ -37,12 +39,12 @@
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.13",
     "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.20",
     "ts-node": "^10.2.1",
     "typeorm": "^0.3.0",
-    "yup": "^0.32.9",
     "winston": "^3.3.3",
     "winston-console-format": "^1.0.8",
-    "source-map-support": "^0.5.20"
+    "yup": "^0.32.9"
   },
   "engines": {
     "nodemon": "2.0.7",

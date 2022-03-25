@@ -1,8 +1,9 @@
-import { Entity, Column, ObjectIdColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Terms } from "./Terms";
 
 @Entity()
 export class SportCamps {
-  @ObjectIdColumn()
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
@@ -23,6 +24,6 @@ export class SportCamps {
   @Column()
   camp_filename!: string;
 
-  @Column()
-  termsId!: string;
+  @ManyToOne(() => Terms, (terms) => terms.sport_camps)
+  terms?: Terms;
 }
