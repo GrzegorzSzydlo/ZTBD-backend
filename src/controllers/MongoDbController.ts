@@ -16,8 +16,6 @@ import { Comment } from "../orm/entities/mongodb/Comment";
 import { Credential } from "../orm/entities/mongodb/Credential";
 import { News } from "../orm/entities/mongodb/News";
 import { SportCompetition } from "../orm/entities/mongodb/SportCompetition";
-import { FindManyOptions, MoreThan, ObjectID, Raw } from "typeorm";
-import { number } from "yup";
 import { ObjectId } from "mongodb";
 
 export const getFirstQuery = async (req: Request, res: Response) => {
