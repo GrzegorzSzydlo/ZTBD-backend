@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import * as faker from "faker";
-import { logger } from "../config/logger";
+import { Raw } from "typeorm";
 import { Comment } from "../orm/entities/mysql/Comment";
 import { Credential } from "../orm/entities/mysql/Credential";
 import { News } from "../orm/entities/mysql/News";
@@ -20,8 +20,12 @@ import {
 
 export const getFirstQuery = async (req: Request, res: Response) => {
   try {
-    //replace with time measurement later
-    const time = faker.datatype.number({ min: 5, max: 15 });
+    const start = Date.now();
+    await credentialRepository.findOne({
+      where: { email: "Nicolette.Ratke@gmail.com" },
+    });
+    const stop = Date.now();
+    const time = stop - start;
     return res.status(200).json({ time });
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
@@ -30,8 +34,12 @@ export const getFirstQuery = async (req: Request, res: Response) => {
 
 export const getSecondQuery = async (req: Request, res: Response) => {
   try {
-    //replace with time measurement later
-    const time = faker.datatype.number({ min: 10, max: 30 });
+    const start = Date.now();
+    await userRepository.find({
+      where: { first_name: "Rusty" },
+    });
+    const stop = Date.now();
+    const time = stop - start;
     return res.status(200).json({ time });
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
@@ -40,8 +48,19 @@ export const getSecondQuery = async (req: Request, res: Response) => {
 
 export const getThirdQuery = async (req: Request, res: Response) => {
   try {
-    //replace with time measurement later
-    const time = faker.datatype.number({ min: 20, max: 50 });
+    const start = Date.now();
+    await userRepository.find({
+      relations: {
+        news: true,
+      },
+      where: {
+        news: {
+          date: Raw((alias) => `${alias} > :date`, { date: "2022-12-06" }),
+        },
+      },
+    });
+    const stop = Date.now();
+    const time = stop - start;
     return res.status(200).json({ time });
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
@@ -50,18 +69,10 @@ export const getThirdQuery = async (req: Request, res: Response) => {
 
 export const getFourthQuery = async (req: Request, res: Response) => {
   try {
-    //replace with time measurement later
-    const time = faker.datatype.number({ min: 40, max: 90 });
-    return res.status(200).json({ time });
-  } catch (error) {
-    return res.status(500).json({ error: (error as Error).message });
-  }
-};
+    const start = Date.now();
 
-export const getFifthQuery = async (req: Request, res: Response) => {
-  try {
-    //replace with time measurement later
-    const time = faker.datatype.number({ min: 70, max: 150 });
+    const stop = Date.now();
+    const time = stop - start;
     return res.status(200).json({ time });
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
@@ -70,7 +81,7 @@ export const getFifthQuery = async (req: Request, res: Response) => {
 
 export const create = async () => {
   try {
-    const iterator = 1000;
+    const iterator = 5000;
     for (let i = 0; i < iterator; i++) {
       const user = await createUser();
       const term = await createTerm();

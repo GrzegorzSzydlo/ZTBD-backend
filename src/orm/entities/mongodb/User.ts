@@ -1,12 +1,9 @@
-import { Entity, Column, OneToMany, ObjectIdColumn } from "typeorm";
-import { Comment } from "./Comment";
-import { News } from "./News";
-import { SportCompetition } from "./SportCompetition";
+import { Entity, Column, ObjectIdColumn, ObjectID } from "typeorm";
 
 @Entity()
 export class User {
   @ObjectIdColumn()
-  id!: number;
+  id!: ObjectID;
 
   @Column()
   first_name!: string;

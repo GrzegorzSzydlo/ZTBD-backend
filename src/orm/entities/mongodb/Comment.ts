@@ -1,9 +1,10 @@
-import { Entity, Column, ObjectIdColumn } from "typeorm";
+import { Entity, Column, ObjectIdColumn, ObjectID } from "typeorm";
 
 @Entity()
 export class Comment {
   @ObjectIdColumn()
-  id!: number;
+  id!: ObjectID;
+
   @Column()
   content!: string;
 

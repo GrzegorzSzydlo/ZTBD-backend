@@ -7,11 +7,13 @@ import { News } from "../entities/mongodb/News";
 import { SportCamps } from "../entities/mongodb/SportCamps";
 import { SportCompetition } from "../entities/mongodb/SportCompetition";
 
-export const termsRepository = MongoDbDatabase.getRepository(Terms);
-export const userRepository = MongoDbDatabase.getRepository(User);
-export const commentRepository = MongoDbDatabase.getRepository(Comment);
-export const credentialRepository = MongoDbDatabase.getRepository(Credential);
-export const newsRepository = MongoDbDatabase.getRepository(News);
-export const sportCampsRepository = MongoDbDatabase.getRepository(SportCamps);
+export const termsRepository = MongoDbDatabase.getMongoRepository(Terms);
+export const userRepository = MongoDbDatabase.getMongoRepository(User);
+export const commentRepository = MongoDbDatabase.getMongoRepository(Comment);
+export const credentialRepository =
+  MongoDbDatabase.getMongoRepository(Credential);
+export const newsRepository = MongoDbDatabase.getMongoRepository(News);
+export const sportCampsRepository =
+  MongoDbDatabase.getMongoRepository(SportCamps);
 export const sportCompetitionRepository =
-  MongoDbDatabase.getRepository(SportCompetition);
+  MongoDbDatabase.getMongoRepository(SportCompetition);

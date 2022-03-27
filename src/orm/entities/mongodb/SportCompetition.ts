@@ -1,9 +1,9 @@
-import { Entity, Column, ObjectIdColumn } from "typeorm";
+import { Entity, Column, ObjectIdColumn, ObjectID } from "typeorm";
 
 @Entity()
 export class SportCompetition {
   @ObjectIdColumn()
-  id!: number;
+  id!: ObjectID;
 
   @Column()
   data_time!: Date;

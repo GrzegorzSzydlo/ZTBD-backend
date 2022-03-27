@@ -6,6 +6,5 @@ router.get("/first-query", MongoDbController.getFirstQuery);
 router.get("/second-query", MongoDbController.getSecondQuery);
 router.get("/third-query", MongoDbController.getThirdQuery);
 router.get("/fourth-query", MongoDbController.getFourthQuery);
-router.get("/fifth-query", MongoDbController.getFifthQuery);
 
 export default router;
