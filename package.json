@@ -1,10 +1,10 @@
 {
   "name": "ztbd-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "student project",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "build": "tsc",
     "start": "nodemon server.ts",
     "command:mongodb-generator": "node dist/commands/mongodb-generator.js",
