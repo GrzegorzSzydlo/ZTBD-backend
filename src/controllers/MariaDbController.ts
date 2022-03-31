@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import * as faker from "faker";
-import { Raw } from "typeorm";
+import { MoreThan, Raw } from "typeorm";
 import { Comment } from "../orm/entities/mariadb/Comment";
 import { Credential } from "../orm/entities/mariadb/Credential";
 import { News } from "../orm/entities/mariadb/News";
@@ -70,7 +70,18 @@ export const getThirdQuery = async (req: Request, res: Response) => {
 export const getFourthQuery = async (req: Request, res: Response) => {
   try {
     const start = Date.now();
-
+    const sportCamps = await sportCampsRepository.find({
+      relations: { terms: true },
+      where: { duration: MoreThan(9600) },
+    });
+    console.log(sportCamps.length);
+    for (const sportCamp of sportCamps) {
+      if (sportCamp.terms) {
+        await termsRepository.update(sportCamp.terms?.id, {
+          end_date: new Date(),
+        });
+      }
+    }
     const stop = Date.now();
     const time = stop - start;
     return res.status(200).json({ time });
@@ -81,7 +92,7 @@ export const getFourthQuery = async (req: Request, res: Response) => {
 
 export const create = async () => {
   try {
-    const iterator = 5000;
+    const iterator = 1000;
     for (let i = 0; i < iterator; i++) {
       const user = await createUser();
       const term = await createTerm();

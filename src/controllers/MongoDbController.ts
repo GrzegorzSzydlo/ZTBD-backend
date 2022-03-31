@@ -52,7 +52,7 @@ export const getThirdQuery = async (req: Request, res: Response) => {
     const start = Date.now();
     const news = await newsRepository.find({
       where: {
-        date: { $gt: new Date("2023-01-06") } as any,
+        date: { $gt: new Date("2023-02-06") } as any,
       },
     });
 
@@ -74,6 +74,13 @@ export const getThirdQuery = async (req: Request, res: Response) => {
 export const getFourthQuery = async (req: Request, res: Response) => {
   try {
     const start = Date.now();
+    const sportCamps = await sportCampsRepository.find({
+      where: { duration: { $gt: 9600 } as any },
+    });
+
+    for (const sportCamp of sportCamps) {
+      await termsRepository.update(sportCamp.termsId, { end_date: new Date() });
+    }
 
     const stop = Date.now();
     const time = stop - start;
@@ -85,7 +92,7 @@ export const getFourthQuery = async (req: Request, res: Response) => {
 
 export const create = async () => {
   try {
-    const iterator = 5000;
+    const iterator = 1000;
     for (let i = 0; i < iterator; i++) {
       const user = await createUser();
       const term = await createTerm();
