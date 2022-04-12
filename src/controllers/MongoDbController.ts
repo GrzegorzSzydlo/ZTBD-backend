@@ -52,10 +52,9 @@ export const getThirdQuery = async (req: Request, res: Response) => {
     const start = Date.now();
     const news = await newsRepository.find({
       where: {
-        date: { $gt: new Date("2023-02-06") } as any,
+        date: { $gt: new Date("2023-03-21") } as any,
       },
     });
-
     const resp = news.map(async (item) => {
       const user = await userRepository.findOne({
         where: { _id: new ObjectId(item.userId) } as any,
@@ -75,9 +74,8 @@ export const getFourthQuery = async (req: Request, res: Response) => {
   try {
     const start = Date.now();
     const sportCamps = await sportCampsRepository.find({
-      where: { duration: { $gt: 9600 } as any },
+      where: { duration: { $gt: 9960 } as any },
     });
-
     for (const sportCamp of sportCamps) {
       await termsRepository.update(sportCamp.termsId, { end_date: new Date() });
     }

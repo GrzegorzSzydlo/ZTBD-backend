@@ -49,13 +49,13 @@ export const getSecondQuery = async (req: Request, res: Response) => {
 export const getThirdQuery = async (req: Request, res: Response) => {
   try {
     const start = Date.now();
-    await userRepository.find({
+    const user = await userRepository.find({
       relations: {
         news: true,
       },
       where: {
         news: {
-          date: Raw((alias) => `${alias} > :date`, { date: "2022-12-06" }),
+          date: Raw((alias) => `${alias} > :date`, { date: "2023-03-15" }),
         },
       },
     });
@@ -74,7 +74,7 @@ export const getFourthQuery = async (req: Request, res: Response) => {
       relations: {
         terms: true,
       },
-      where: { duration: MoreThan(9600) },
+      where: { duration: MoreThan(9960) },
     });
     for (const sportCamp of sportCamps) {
       if (sportCamp.terms) {
